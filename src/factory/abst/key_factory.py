@@ -1,4 +1,5 @@
 import abc
+from typing import List
 
 from src.model.key import Key
 
@@ -9,7 +10,7 @@ class AbstKeyFactory(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def get_by_registered_user(self, discord_user_id: int) -> Key:
+    def get_by_registered_user(self, discord_user_id: int) -> List[Key]:
         pass
 
     @abc.abstractmethod
