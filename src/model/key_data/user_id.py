@@ -1,8 +1,7 @@
 import dataclasses
 
 @dataclasses.dataclass
-class UserId:
+class KeyUserId:
     name: str
     email: str
     comment: str
-
