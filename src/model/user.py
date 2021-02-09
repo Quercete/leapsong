@@ -25,7 +25,6 @@ class User:
         pass
 
     @staticmethod
-    def load(key_id: str):
+    def load(discord_user_id: str):
         # TODO: load from firebase
         pass
-
