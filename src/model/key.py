@@ -27,7 +27,8 @@ class Key:
             }
         }
 
-    def from_dict(self, data_dict: dict):
+    @staticmethod
+    def from_dict(data_dict: dict):
         return Key(
             key_armor=data_dict["key_armor"],
             key_id=data_dict["key_id"],
@@ -43,3 +44,13 @@ class Key:
                 for_sign=data_dict["usage"]["sign"]
             )
         )
+
+    def save(self):
+        # TODO: Save to firebase
+        pass
+
+    @staticmethod
+    def load(key_id: str):
+        # TODO: load from firebase
+        pass
+
