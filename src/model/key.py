@@ -23,13 +23,11 @@ class Key:
             parsed_key = pgpy.PGPKey.from_blob(key_armor.replace("\\n", "\n"))
             key: pgpy.PGPKey = parsed_key[0]
             long_key_id = list(parsed_key[1].keys())[0][0]
-        except ValueError:
-            return None
 
         return Key(
-            key_armor=key_armor,
             key_id=long_key_id,
             fingerprint=key.fingerprint.replace(" ", ""),
+            key_armor=key_armor,
             key_user_id=KeyUserId(
                 name=key.userids[0].name,
                 email=key.userids[0].email,
@@ -47,9 +45,9 @@ class Key:
     def to_dict(self) -> dict:
         return {
             "key_id": self.key_id,
+            "fingerprint": self.fingerprint,
             "key_armor": self.key_armor,
             "key_armor_url": self.key_armor_url,
-            "fingerprint": self.fingerprint,
             "key_user_id": {
                 "name": self.key_user_id.name,
                 "email": self.key_user_id.email,
@@ -72,9 +70,9 @@ class Key:
 
         return Key(
             key_id=data_dict["key_id"],
+            fingerprint=data_dict["fingerprint"],
             key_armor=data_dict["key_armor"],
             key_armor_url=key_armor_url,
-            fingerprint=data_dict["fingerprint"],
             key_user_id=KeyUserId(
                 name=data_dict["key_user_id"]["name"],
                 email=data_dict["key_user_id"]["email"],
