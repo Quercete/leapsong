@@ -130,3 +130,6 @@ dmypy.json
 
 # firebase credential
 credential.json
+
+# .idea
+.idea/

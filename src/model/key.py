@@ -1,22 +1,23 @@
 import dataclasses
-from .key_data.key_armor import KeyArmor
-from .key_data.user_id import UserId
+from .key_data.user_id import KeyUserId
 from .key_data.usage import Usage
+
 
 @dataclasses.dataclass
 class Key:
     key_armor: str
-    user_id: UserId
+    key_id: str
+    key_user_id: KeyUserId
     usage: Usage
-
 
     def to_dict(self) -> dict:
         return {
             "key_armor": self.key_armor,
-            "user_id": {
-                "name": self.user_id.name,
-                "email": self.user_id.email,
-                "comment": self.user_id.comment
+            "key_id": self.key_id,
+            "key_user_id": {
+                "name": self.key_user_id.name,
+                "email": self.key_user_id.email,
+                "comment": self.key_user_id.comment
             },
             "usage": {
                 "auth": self.usage.for_authenticate,
@@ -26,13 +27,14 @@ class Key:
             }
         }
 
-    def from_dict(data_dict: dict):
+    def from_dict(self, data_dict: dict):
         return Key(
             key_armor=data_dict["key_armor"],
-            user_id=UserId(
-                name=data_dict["user_id"]["name"],
-                email=data_dict["user_id"]["email"],
-                comment=data_dict["user_id"]["comment"],
+            key_id=data_dict["key_id"],
+            key_user_id=KeyUserId(
+                name=data_dict["key_user_id"]["name"],
+                email=data_dict["key_user_id"]["email"],
+                comment=data_dict["key_user_id"]["comment"],
             ),
             usage=Usage(
                 for_authenticate=data_dict["usage"]["auth"],
@@ -41,4 +43,3 @@ class Key:
                 for_sign=data_dict["usage"]["sign"]
             )
         )
-
