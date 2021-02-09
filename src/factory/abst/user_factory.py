@@ -1,6 +1,6 @@
 import abc
 
-from src.model.User import User
+from src.model.user import User
 
 class UserFactroy(metaclass=abc.ABCMeta):
     @abc.abstractmethod
@@ -14,4 +14,3 @@ class UserFactroy(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def remove_key(self, discord_user_id: int, key_id: str) -> User:
         pass
-
