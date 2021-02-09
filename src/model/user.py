@@ -19,3 +19,12 @@ class User:
             discord_user_id=data_dict["discord_user_id"],
             key_ids=data_dict["key_ids"]
         )
+
+    def save(self):
+        # TODO: Save to firebase
+        pass
+
+    @staticmethod
+    def load(discord_user_id: str):
+        # TODO: load from firebase
+        pass
