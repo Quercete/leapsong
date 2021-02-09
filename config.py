@@ -6,6 +6,7 @@ CREDENTIAL_FILE_NAME = "credential.json"
 
 FIREBASE_SETTINGS = {
         'databaseURL': environ["LEAPSONG_DB_URL"],
+        'storageBucket': environ["LEAPSONG_STORAGE_BUCKET"],
         'databaseAuthVariableOverride': {
             'uid': environ["LEAPSONG_UID"]
         }
