@@ -3,7 +3,7 @@ import abc
 from src.model.user import User
 
 
-class UserFactory(metaclass=abc.ABCMeta):
+class AbstUserFactory(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def create(self, discord_user_id: int) -> User:
         pass

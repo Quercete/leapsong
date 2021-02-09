@@ -3,7 +3,7 @@ import abc
 from src.model.key import Key
 
 
-class KeyFactory(metaclass=abc.ABCMeta):
+class AbstKeyFactory(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def create(self, key_armor: str) -> Key:
         pass
