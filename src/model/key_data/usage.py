@@ -1,8 +1,7 @@
-import abc
 import dataclasses
 
 @dataclasses.dataclass
-class Usage(metaclass=abc.ABCMeta):
+class Usage:
     for_authenticate: bool
     for_certify: bool
     for_encrypt: bool

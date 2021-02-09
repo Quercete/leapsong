@@ -1,8 +1,7 @@
-import abc
 import dataclasses
 
 @dataclasses.dataclass
-class KeyArmor(metaclass=abc.ABCMeta):
+class KeyArmor:
     key_armor: str
 
 

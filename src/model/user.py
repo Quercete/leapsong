@@ -1,8 +1,7 @@
 import dataclasses
-import abc
 
 @dataclasses.dataclass
-class User(metaclass=abc.ABCMeta):
+class User:
     discord_user_id: int
     cached_discord_username: str
 
