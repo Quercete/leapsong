@@ -11,7 +11,7 @@ def __create_credential_file() -> None:
 
 
 def __get_credential() -> firebase_admin.credentials.Certificate:
-    credential = firebase_admin.credentials.Certificate(FIREBASE_SETTINGS)
+    credential = firebase_admin.credentials.Certificate(CREDENTIAL_FILE_NAME)
 
     return credential
 
