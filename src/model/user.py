@@ -1,6 +1,8 @@
 import dataclasses
 from typing import List
 
+from firebase_admin import db
+
 
 @dataclasses.dataclass
 class User:
@@ -21,10 +23,20 @@ class User:
         )
 
     def save(self):
-        # TODO: Save to firebase
-        pass
+        update_object: dict = {
+            self.discord_user_id: {
+                self.key_ids
+            }
+        }
 
+        ref = db.reference("users")
+        ref.set(update_object)
+
+    # TODO: fetchとかの名前のほうが良くね
     @staticmethod
     def load(discord_user_id: str):
-        # TODO: load from firebase
-        pass
+        ref = db.reference("users").child(discord_user_id)
+
+        data = ref.get()
+        user = User.from_dict(data)
+        return user
