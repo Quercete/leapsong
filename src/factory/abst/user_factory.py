@@ -8,10 +8,10 @@ class UserFactroy(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def add_key(self, discord_user_id: int, key_identify_id: int) -> User:
+    def add_key(self, discord_user_id: int, key_id: str) -> User:
         pass
 
     @abc.abstractmethod
-    def remove_key(self, discord_user_id: int, key_identify_id: int) -> User:
+    def remove_key(self, discord_user_id: int, key_id: str) -> User:
         pass
 

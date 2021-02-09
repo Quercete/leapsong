@@ -12,6 +12,6 @@ class KeyFactroy(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def get_by_identify_id(self, identify_id: int) -> Key:
+    def get_by_key_id(self, key_id: str) -> Key:
         pass
 
