@@ -87,7 +87,7 @@ class Key:
         blob.upload_from_string(key_armor)
 
         if key_id not in bucket.list_blobs():
-            raise RuntimeError("Cloud not save the key_armor of the key id: {}", key_id)
+            raise RuntimeError("Could not save the key_armor of the key id: {}", key_id)
 
         return blob.self_link
 
