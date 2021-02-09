@@ -5,14 +5,14 @@ from .key_data.usage import Usage
 
 @dataclasses.dataclass
 class Key:
-    key_armor: KeyArmor
+    key_armor: str
     user_id: UserId
     usage: Usage
 
 
     def to_dict(self) -> dict:
         return {
-            "key_armor": self.key_armor.key_armor,
+            "key_armor": self.key_armor,
             "user_id": {
                 "name": self.user_id.name,
                 "email": self.user_id.email,
