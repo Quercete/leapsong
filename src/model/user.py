@@ -23,20 +23,18 @@ class User:
         )
 
     def save(self):
-        update_object: dict = {
-            self.discord_user_id: {
-                self.key_ids
-            }
-        }
-
-        ref = db.reference("users")
-        ref.set(update_object)
+        ref = db.reference("users").child(str(self.discord_user_id))
+        ref.set(self.key_ids)
 
     # TODO: fetchとかの名前のほうが良くね
     @staticmethod
-    def load(discord_user_id: str):
-        ref = db.reference("users").child(discord_user_id)
+    def load(discord_user_id: int):
+        ref = db.reference("users").child(str(discord_user_id))
+        key_ids = ref.get()
 
-        data = ref.get()
-        user = User.from_dict(data)
+        user = User(
+            discord_user_id=discord_user_id,
+            key_ids=list(key_ids)
+        )
+
         return user
