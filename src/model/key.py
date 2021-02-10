@@ -1,6 +1,7 @@
 import dataclasses
 import pgpy
 from pgpy.constants import KeyFlags
+from typing import Optional
 from firebase_admin import db
 from firebase_admin import storage
 
@@ -13,21 +14,21 @@ class Key:
     key_id: str
     fingerprint: str
     key_armor: str
-    key_armor_url: str
+    key_armor_url: Optional[str]
     key_user_id: KeyUserId
     usage: Usage
 
     @staticmethod
     def from_key_armor(key_armor: str):
-        try:
-            parsed_key = pgpy.PGPKey.from_blob(key_armor.replace("\\n", "\n"))
-            key: pgpy.PGPKey = parsed_key[0]
-            long_key_id = list(parsed_key[1].keys())[0][0]
+        parsed_key = pgpy.PGPKey.from_blob(key_armor.replace("\\n", "\n"))
+        key: pgpy.PGPKey = parsed_key[0]
+        long_key_id = list(parsed_key[1].keys())[0][0]
 
         return Key(
             key_id=long_key_id,
             fingerprint=key.fingerprint.replace(" ", ""),
             key_armor=key_armor,
+            key_armor_url=None,
             key_user_id=KeyUserId(
                 name=key.userids[0].name,
                 email=key.userids[0].email,
@@ -89,7 +90,7 @@ class Key:
     def save(self):
         data = self.to_dict()
         data.pop("key_id")
-        data.pop("armor")
+        data.pop("key_armor")
 
         db_ref = db.reference("keys").child(self.key_id)
         db_ref.set(data)
@@ -100,8 +101,11 @@ class Key:
     @staticmethod
     def load(key_id: str):
         db_ref = db.reference("keys").child(key_id)
-
         data = db_ref.get()
+
+        if data is None:
+            return None
+
         data["key_id"] = key_id
         data["key_armor"] = Key.__fetch_key_armor_from_key_id(key_id)
 
@@ -114,9 +118,6 @@ class Key:
         blob = bucket.blob(key_id)
 
         blob.upload_from_string(key_armor)
-
-        if key_id not in bucket.list_blobs():
-            raise RuntimeError("Could not save the key_armor of the key id: {}", key_id)
 
         return blob.self_link
 
