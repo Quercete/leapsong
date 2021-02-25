@@ -22,7 +22,7 @@ async def message_root(message: discord.Message):
         if "already_registered" in command_body:
             embed = embed_factory(
                 user_display_name=message.author.display_name,
-                user_abatar_url=message.author.avatar_url,
+                user_avatar_url=message.author.avatar_url,
                 user_id=message.author.id,
                 key_fingerprint="E27E 14ED 6771 02F5 051D 6E31 C046 9D56 0DE4 1848",
                 key_id="17CF 9C20 46CF 1B67",
@@ -34,7 +34,7 @@ async def message_root(message: discord.Message):
         if "not_registered" in command_body:
             embed = embed_factory(
                 user_display_name=message.author.display_name,
-                user_abatar_url=message.author.avatar_url,
+                user_avatar_url=message.author.avatar_url,
                 user_id=message.author.id
             )
             await message.channel.send(embed=embed)

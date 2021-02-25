@@ -9,7 +9,7 @@ ICON_URL = "http://www.icon-surfer.com/wp-content/uploads/2014/02/14020912.png"
 
 def embed_factory(
         user_display_name: str,
-        user_abatar_url: str,
+        user_avatar_url: str,
         user_id: int,
         key_fingerprint: Union[str, None] = None,
         key_id: Union[int, None] = None,
@@ -17,13 +17,13 @@ def embed_factory(
         mode: str = "INQUIRY"
     ) -> discord.Embed:
     if mode == "INQUIRY":
-        embed = __inquiry_embed(user_display_name, user_abatar_url, user_id, key_fingerprint, key_id, valid_date)
+        embed = __inquiry_embed(user_display_name, user_avatar_url, user_id, key_fingerprint, key_id, valid_date)
         return embed
 
 
 def __inquiry_embed(
         user_display_name: str,
-        user_abatar_url: str,
+        user_avatar_url: str,
         user_id: int,
         key_fingerprint: Union[str, None] = None,
         key_id: Union[int, None] = None,
@@ -38,7 +38,7 @@ def __inquiry_embed(
 
         embed = discord.Embed(title=title, description=description, color=0xfd3c3c)
         embed.set_author(name=BOT_NAME, icon_url=ICON_URL)
-        embed.set_thumbnail(url=user_abatar_url)
+        embed.set_thumbnail(url=user_avatar_url)
 
         return embed
 
@@ -53,7 +53,7 @@ def __inquiry_embed(
 
     embed = discord.Embed(title=title, description=description, color=0x3498DB)
     embed.set_author(name=BOT_NAME, icon_url=ICON_URL)
-    embed.set_thumbnail(url=user_abatar_url)
+    embed.set_thumbnail(url=user_avatar_url)
     embed.add_field(name="鍵の所有者", value=key_holder_mention, inline=False)
     embed.add_field(name="公開鍵のID", value=parsed_key_id, inline=False)
     embed.add_field(name="フィンガープリント", value=parsed_fingerprint, inline=False)

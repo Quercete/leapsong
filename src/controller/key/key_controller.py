@@ -16,4 +16,3 @@ class KeyController:
 
     def get_key_from_id(self, key_id: str):
         return Key.load(key_id)
-
