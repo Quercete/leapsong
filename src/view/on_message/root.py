@@ -4,8 +4,8 @@ import datetime
 
 import discord
 
-from src.smplemb import sample_embed
-from src.utils.embedfactory import embed_factory
+from src.view.smplemb import sample_embed
+from src.view.utils.embedfactory import embed_factory
 
 GPG_PREFIX_REGEX = re.compile(r"^!(gpg|pgp) ")
 
