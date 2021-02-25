@@ -1,4 +1,4 @@
-from src.client import MainClient
+from src.view.client import MainClient
 
 
 if __name__ == "__main__":

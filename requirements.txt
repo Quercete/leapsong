@@ -1,1 +1,3 @@
 pgpy
+discord.py
+firebase_admin

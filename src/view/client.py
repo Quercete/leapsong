@@ -4,7 +4,7 @@ from typing import Union
 
 import discord
 
-from src.on_message.root import message_root
+from src.view.on_message.root import message_root
 
 TOKEN = "Njk0OTI1NjkxODAzNjY0NTI1.XuRExQ.v4GhW_sTKI6ixwGvMM5ynjHHAcg"
 # TOKEN = os.getenv("TOKEN")
