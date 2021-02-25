@@ -34,7 +34,7 @@ class User:
 
         user = User(
             discord_user_id=discord_user_id,
-            key_ids=list(key_ids)
+            key_ids=list(key_ids or [])
         )
 
         return user

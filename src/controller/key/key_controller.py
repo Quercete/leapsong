@@ -1,19 +1,19 @@
-from src.factory.abst.key_factory import AbstKeyFactory
-from src.factory.abst.user_factory import AbstUserFactory
+from src.model.key import Key
+from src.model.user import User
 
 
 class KeyController:
-    def __init__(self, key_factory: AbstKeyFactory, user_factory: AbstUserFactory):
-        self.key_factory: AbstKeyFactory = key_factory
-        self.user_factory: AbstUserFactory = user_factory
-
     def register_key(self, key_armor: str, discord_user_id: int):
-        key = self.key_factory.create(key_armor)
-        self.user_factory.add_key(discord_user_id, key.key_id)
+        key = Key.from_key_armor(key_armor)
+        user = User.load(discord_user_id)
+        user.key_ids.append(key.key_id)
+        key.save()
+        user.save()
 
     def get_key_from_user(self, discord_user_id: int):
-        return self.key_factory.get_by_registered_user(discord_user_id)
+        user = User.load(discord_user_id)
+        return [self.get_key_from_id(x) for x in user.key_ids]
 
     def get_key_from_id(self, key_id: str):
-        return self.key_factory.get_by_key_id(key_id)
+        return Key.load(key_id)
 
