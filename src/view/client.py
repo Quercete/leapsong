@@ -5,9 +5,8 @@ from typing import Union
 import discord
 
 from src.view.on_message.root import message_root
+from config import DISCORD_TOKEN
 
-TOKEN = "Njk0OTI1NjkxODAzNjY0NTI1.XuRExQ.v4GhW_sTKI6ixwGvMM5ynjHHAcg"
-# TOKEN = os.getenv("TOKEN")
 TEST_TEXT_CH_ID = 711127633810817026
 
 
@@ -17,7 +16,7 @@ class MainClient(discord.Client):
         self.TEST_TEXT_CH: Union[None, discord.TextChannel] = None
 
     def run(self):
-        super().run(TOKEN)
+        super().run(DISCORD_TOKEN)
 
     async def on_ready(self):
         self.TEST_TEXT_CH = self.get_channel(TEST_TEXT_CH_ID)
